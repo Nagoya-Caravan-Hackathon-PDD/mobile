@@ -1,55 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:github_go_mobile/styles/theme.dart';
+import 'package:github_go_mobile/widgets/web_view_stack.dart';
 
-class WebViewPage extends StatefulWidget {
+class WebViewPage extends HookWidget {
   const WebViewPage({super.key});
 
   @override
-  State<WebViewPage> createState() => _WebViewStackState();
-}
-
-class _WebViewStackState extends State<WebViewPage> {
-  var loadingPercentage = 0;
-  late final WebViewController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = WebViewController()
-      ..setNavigationDelegate(NavigationDelegate(
-        onPageStarted: (url) {
-          setState(() {
-            loadingPercentage = 0;
-          });
-        },
-        onProgress: (progress) {
-          setState(() {
-            loadingPercentage = progress;
-          });
-        },
-        onPageFinished: (url) {
-          setState(() {
-            loadingPercentage = 100;
-          });
-        },
-      ))
-      ..loadRequest(
-        Uri.parse('https://flutter.dev'),
-      );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        WebViewWidget(
-          controller: controller,
+    // TODO: 環境変数に置き換えたい
+    const webViewUrl = 'https://flutter.dev';
+    return Scaffold(
+        body: Container(
+      color: ThemeColor.primary,
+      child: const SafeArea(
+        child: WebViewStack(
+          url: webViewUrl,
         ),
-        if (loadingPercentage < 100)
-          LinearProgressIndicator(
-            value: loadingPercentage / 100.0,
-          ),
-      ],
-    );
+      ),
+    ));
   }
 }
