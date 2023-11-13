@@ -10,8 +10,18 @@ class WebViewPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: 環境変数に置き換えたい
-    const webViewUrl = 'https://flutter.dev';
-    final webview = useWebView(webViewUrl);
+    const webViewUrl = 'http://localhost:3000';
+    final javascriptChannel = JavaScriptChannel(
+      name: 'webViewChannel',
+      onMessage: (message) {
+        // TODO: localstorageに保存する
+        print(message);
+      },
+    );
+    final webview = useWebView(
+        url: webViewUrl,
+        enableJavascript: true,
+        javascriptChannels: [javascriptChannel]);
 
     return Scaffold(
         body: Container(

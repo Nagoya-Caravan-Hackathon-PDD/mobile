@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:github_go_mobile/hooks/use_web_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 const maxLoadingPercentage = 100;
