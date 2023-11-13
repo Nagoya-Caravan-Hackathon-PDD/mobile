@@ -7,7 +7,6 @@ import 'package:github_go_mobile/hooks/use_web_view.dart';
 import 'package:github_go_mobile/repositories/auth_repository.dart';
 import 'package:github_go_mobile/styles/theme.dart';
 import 'package:github_go_mobile/widgets/web_view_stack.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class WebViewPage extends HookWidget {
   const WebViewPage({super.key});
