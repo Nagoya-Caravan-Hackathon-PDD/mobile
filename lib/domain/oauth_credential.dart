@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class OAuthCredential {
   final String accessToken;
   final String userId;
@@ -12,5 +14,12 @@ class OAuthCredential {
       accessToken: json['accessToken'],
       userId: json['userId'],
     );
+  }
+
+  String toJson() {
+    return jsonEncode({
+      'accessToken': accessToken,
+      'userId': userId,
+    });
   }
 }
