@@ -11,9 +11,20 @@ class WebView {
   });
 }
 
+class JavaScriptChannel {
+  final String name;
+  final void Function(String) onMessage;
+
+  JavaScriptChannel({
+    required this.name,
+    required this.onMessage,
+  });
+}
+
 WebView useWebView(
-  String url,
-) {
+    {required String url,
+    enableJavascript = false,
+    List<JavaScriptChannel>? javascriptChannels}) {
   const minLoadingPercentage = 0;
   const maxLoadingPercentage = 100;
 
@@ -32,9 +43,25 @@ WebView useWebView(
         loadingPercentage.value = maxLoadingPercentage;
       },
     ));
+
     controller.loadRequest(
       Uri.parse(url),
     );
+
+    if (enableJavascript) {
+      controller.setJavaScriptMode(JavaScriptMode.unrestricted);
+    }
+
+    // NOTE: ChannelのnameがJSから呼び出される。
+    // EX: window.channelName.postMessage('message');
+    if (javascriptChannels != null) {
+      for (final channel in javascriptChannels) {
+        controller.addJavaScriptChannel(channel.name,
+            onMessageReceived: (message) {
+          channel.onMessage(message.message);
+        });
+      }
+    }
     return () {};
   }, const []);
 

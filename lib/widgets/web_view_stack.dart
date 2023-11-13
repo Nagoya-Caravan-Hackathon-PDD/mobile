@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:github_go_mobile/hooks/use_web_view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+const maxLoadingPercentage = 100;
+
 class WebViewStack extends HookWidget {
-  final String url;
+  final WebViewController controller;
+  final int loadingPercentage;
   const WebViewStack({
     super.key,
-    required this.url,
+    required this.controller,
+    required this.loadingPercentage,
   });
 
   @override
   Widget build(BuildContext context) {
-    const maxLoadingPercentage = 100;
-
-    final webview = useWebView(url);
-
     return Stack(
       children: [
         WebViewWidget(
-          controller: webview.controller,
+          controller: controller,
         ),
-        if (webview.loadingPercentage < maxLoadingPercentage)
+        if (loadingPercentage < maxLoadingPercentage)
           LinearProgressIndicator(
-              value: webview.loadingPercentage / maxLoadingPercentage),
+              value: loadingPercentage / maxLoadingPercentage),
       ],
     );
   }
