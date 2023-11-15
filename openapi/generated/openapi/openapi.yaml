@@ -1,0 +1,212 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: oogiriminister@gamil.com
+    name: murasame29
+  description: This is a PDD-GitHub-Go-Backend API server
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: PDD-GitHub-Go-Backend API
+  version: "0.1"
+servers:
+- url: //localhost:8080/v1
+paths:
+  /encounters:
+    get:
+      description: Get All Encounters
+      parameters:
+      - in: query
+        name: pageID
+        schema:
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          type: integer
+      - in: query
+        name: userID
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/output.ListEncounterResponse'
+                type: array
+          description: success response
+        "400":
+          content: {}
+          description: error response
+        "500":
+          content: {}
+          description: error response
+      summary: Get All Encounters
+      tags:
+      - Encounter
+    post:
+      description: Create Encount entory
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/input.CreateEncounterRequest'
+        description: create encounter request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/output.CreateEncounterResponse'
+          description: success response
+        "400":
+          content: {}
+          description: error response
+        "500":
+          content: {}
+          description: error response
+      summary: Create Encounter
+      tags:
+      - Encounter
+      x-codegen-request-body-name: CreateEncounterRequest
+  /encounters/{encounter_id}:
+    get:
+      description: Get All Encounters
+      parameters:
+      - description: list encounter request
+        in: path
+        name: encounter_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/output.ListEncounterResponse'
+          description: success response
+        "400":
+          content: {}
+          description: error response
+        "500":
+          content: {}
+          description: error response
+      summary: Get All Encounters
+      tags:
+      - Encounter
+  /users:
+    post:
+      description: Create User
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/input.CreateUser'
+        description: create user request
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/output.CreateUserResponse'
+          description: success response
+        "400":
+          content: {}
+          description: error response
+        "409":
+          content: {}
+          description: error response
+        "500":
+          content: {}
+          description: error response
+      summary: Create User
+      tags:
+      - User
+      x-codegen-request-body-name: CreateUser
+  /users/{user_id}:
+    delete:
+      description: Delete User
+      parameters:
+      - description: create user request
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/output.DeleteUserResponse'
+          description: success response
+        "400":
+          content: {}
+          description: error response
+        "409":
+          content: {}
+          description: error response
+        "500":
+          content: {}
+          description: error response
+      summary: Delete User
+      tags:
+      - User
+components:
+  schemas:
+    input.CreateEncounterRequest:
+      properties:
+        encounted_user_id:
+          type: string
+        user_id:
+          type: string
+      type: object
+    input.CreateUser:
+      properties:
+        github_id:
+          type: string
+      type: object
+    output.CreateEncounterResponse:
+      example:
+        encounter_id: encounter_id
+      properties:
+        encounter_id:
+          type: string
+      type: object
+    output.CreateUserResponse:
+      example:
+        message: message
+      properties:
+        message:
+          description: ユーザの情報
+          type: string
+      type: object
+    output.DeleteUserResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    output.ListEncounterResponse:
+      example:
+        user_id: user_id
+        created_at: created_at
+        encouted_user_id: encouted_user_id
+        encounter_id: encounter_id
+      properties:
+        created_at:
+          type: string
+        encounter_id:
+          type: string
+        encouted_user_id:
+          type: string
+        user_id:
+          type: string
+      type: object
+x-original-swagger-version: "2.0"
