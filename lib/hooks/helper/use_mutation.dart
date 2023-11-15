@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class UseMutationResult<T, P> {
   final T? data;
   final bool isLoading;
-  final Error? error;
+  final Exception? error;
   final Future<void> Function({P params, MutationOption<T>? option}) mutate;
   final bool hasError;
 
@@ -21,7 +21,7 @@ typedef MutationFunction<T, P> = Future<T> Function(P);
 
 class MutationOption<T> {
   final void Function(T) onSuccess;
-  final void Function(Error) onError;
+  final void Function(Exception) onError;
 
   MutationOption({
     required this.onSuccess,
@@ -34,7 +34,7 @@ UseMutationResult<T, P> useMutation<T, P>({
 }) {
   final data = useState<T?>(null);
   final isLoading = useState(false);
-  final error = useState<Error?>(null);
+  final error = useState<Exception?>(null);
   final hasError = useState(false);
 
   Future<void> mutate({params, MutationOption<T>? option}) async {
@@ -45,7 +45,7 @@ UseMutationResult<T, P> useMutation<T, P>({
       final res = await mutateFn(params);
       data.value = res;
       if (option?.onSuccess != null) option!.onSuccess(res);
-    } on Error catch (e) {
+    } on Exception catch (e) {
       error.value = e;
       if (option?.onError != null) option!.onError(e);
     } finally {
