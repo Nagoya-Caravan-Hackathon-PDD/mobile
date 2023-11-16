@@ -19,8 +19,8 @@ UseMutationResult<OutputCreateEncounterResponse?, String>
         ..encountedUserId = encounteredUserId
         ..userId = user.uid);
 
-      final res =
-          await encounterRepo.encountersPost(createEncounterRequest: request);
+      final res = await encounterRepo.encountersPost(
+          authorization: user.token, createEncounterRequest: request);
       return res.data;
     },
   );
