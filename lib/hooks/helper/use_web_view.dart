@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:github_go_mobile/repositories/user_repository.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebView {
@@ -30,6 +32,16 @@ WebView useWebView(
 
   final controller = useMemoized(() => WebViewController());
   final loadingPercentage = useState(0);
+  final userRepo = UserRepository();
+
+  Future<void> sendMessageToFront() async {
+    final user = await userRepo.get();
+    if (user == null) {
+      return;
+    }
+    final json = user.toJson();
+    controller.runJavaScript("receiveMessageFromFlutter('$json')");
+  }
 
   useEffect(() {
     controller.setNavigationDelegate(NavigationDelegate(
@@ -39,8 +51,17 @@ WebView useWebView(
       onProgress: (progress) {
         loadingPercentage.value = progress;
       },
-      onPageFinished: (url) {
+      onPageFinished: (url) async {
         loadingPercentage.value = maxLoadingPercentage;
+        // HACK: Reactがレンダリングされるまでwindowオブジェクトがないため、関数が呼べない。
+        await Future.delayed(const Duration(seconds: 1));
+        await sendMessageToFront();
+      },
+      onNavigationRequest: (request) {
+        if (!request.url.startsWith(url)) {
+          return NavigationDecision.prevent;
+        }
+        return NavigationDecision.navigate;
       },
     ));
 

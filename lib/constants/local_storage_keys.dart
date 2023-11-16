@@ -1,1 +1,1 @@
-const oauthCredentialKey = 'oauthCredential';
+const authUserKey = 'userAuth';
