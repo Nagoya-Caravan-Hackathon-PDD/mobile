@@ -16,6 +16,12 @@ paths:
     get:
       description: Get All Encounters
       parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
       - in: query
         name: pageID
         schema:
@@ -48,6 +54,13 @@ paths:
       - Encounter
     post:
       description: Create Encount entory
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           '*/*':
@@ -76,6 +89,12 @@ paths:
     get:
       description: Get All Encounters
       parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
       - description: list encounter request
         in: path
         name: encounter_id
@@ -101,6 +120,13 @@ paths:
   /users:
     post:
       description: Create User
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
       requestBody:
         content:
           '*/*':
@@ -157,6 +183,40 @@ paths:
       summary: Delete User
       tags:
       - User
+    get:
+      description: Get any User
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        schema:
+          type: string
+      - description: create user request
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/output.ReadUserResponse'
+          description: success response
+        "400":
+          content: {}
+          description: error response
+        "409":
+          content: {}
+          description: error response
+        "500":
+          content: {}
+          description: error response
+      summary: Get User
+      tags:
+      - User
 components:
   schemas:
     input.CreateEncounterRequest:
@@ -207,6 +267,17 @@ components:
         encouted_user_id:
           type: string
         user_id:
+          type: string
+      type: object
+    output.ReadUserResponse:
+      example:
+        user_id: user_id
+        github_id: github_id
+      properties:
+        github_id:
+          type: string
+        user_id:
+          description: ユーザの情報
           type: string
       type: object
 x-original-swagger-version: "2.0"

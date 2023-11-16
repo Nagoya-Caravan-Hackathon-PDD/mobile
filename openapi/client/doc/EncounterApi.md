@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **encountersEncounterIdGet**
-> OutputListEncounterResponse encountersEncounterIdGet(encounterId)
+> OutputListEncounterResponse encountersEncounterIdGet(authorization, encounterId)
 
 Get All Encounters
 
@@ -26,10 +26,11 @@ Get All Encounters
 import 'package:openapi/api.dart';
 
 final api = Openapi().getEncounterApi();
+final String authorization = authorization_example; // String | Authorization
 final String encounterId = encounterId_example; // String | list encounter request
 
 try {
-    final response = api.encountersEncounterIdGet(encounterId);
+    final response = api.encountersEncounterIdGet(authorization, encounterId);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling EncounterApi->encountersEncounterIdGet: $e\n');
@@ -40,6 +41,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Authorization | 
  **encounterId** | **String**| list encounter request | 
 
 ### Return type
@@ -58,7 +60,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **encountersGet**
-> BuiltList<OutputListEncounterResponse> encountersGet(pageID, pageSize, userID)
+> BuiltList<OutputListEncounterResponse> encountersGet(authorization, pageID, pageSize, userID)
 
 Get All Encounters
 
@@ -69,12 +71,13 @@ Get All Encounters
 import 'package:openapi/api.dart';
 
 final api = Openapi().getEncounterApi();
+final String authorization = authorization_example; // String | Authorization
 final int pageID = 56; // int | 
 final int pageSize = 56; // int | 
 final String userID = userID_example; // String | 
 
 try {
-    final response = api.encountersGet(pageID, pageSize, userID);
+    final response = api.encountersGet(authorization, pageID, pageSize, userID);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling EncounterApi->encountersGet: $e\n');
@@ -85,6 +88,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Authorization | 
  **pageID** | **int**|  | [optional] 
  **pageSize** | **int**|  | [optional] 
  **userID** | **String**|  | [optional] 
@@ -105,7 +109,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **encountersPost**
-> OutputCreateEncounterResponse encountersPost(createEncounterRequest)
+> OutputCreateEncounterResponse encountersPost(authorization, createEncounterRequest)
 
 Create Encounter
 
@@ -116,10 +120,11 @@ Create Encount entory
 import 'package:openapi/api.dart';
 
 final api = Openapi().getEncounterApi();
+final String authorization = authorization_example; // String | Authorization
 final InputCreateEncounterRequest createEncounterRequest = ; // InputCreateEncounterRequest | create encounter request
 
 try {
-    final response = api.encountersPost(createEncounterRequest);
+    final response = api.encountersPost(authorization, createEncounterRequest);
     print(response);
 } catch on DioException (e) {
     print('Exception when calling EncounterApi->encountersPost: $e\n');
@@ -130,6 +135,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **authorization** | **String**| Authorization | 
  **createEncounterRequest** | [**InputCreateEncounterRequest**](InputCreateEncounterRequest.md)| create encounter request | 
 
 ### Return type

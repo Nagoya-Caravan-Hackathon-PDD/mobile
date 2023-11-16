@@ -47,10 +47,11 @@ import 'package:openapi/openapi.dart';
 
 
 final api = Openapi().getEncounterApi();
+final String authorization = authorization_example; // String | Authorization
 final String encounterId = encounterId_example; // String | list encounter request
 
 try {
-    final response = await api.encountersEncounterIdGet(encounterId);
+    final response = await api.encountersEncounterIdGet(authorization, encounterId);
     print(response);
 } catch on DioException (e) {
     print("Exception when calling EncounterApi->encountersEncounterIdGet: $e\n");
@@ -69,6 +70,7 @@ Class | Method | HTTP request | Description
 [*EncounterApi*](doc/EncounterApi.md) | [**encountersPost**](doc/EncounterApi.md#encounterspost) | **POST** /encounters | Create Encounter
 [*UserApi*](doc/UserApi.md) | [**usersPost**](doc/UserApi.md#userspost) | **POST** /users | Create User
 [*UserApi*](doc/UserApi.md) | [**usersUserIdDelete**](doc/UserApi.md#usersuseriddelete) | **DELETE** /users/{user_id} | Delete User
+[*UserApi*](doc/UserApi.md) | [**usersUserIdGet**](doc/UserApi.md#usersuseridget) | **GET** /users/{user_id} | Get User
 
 
 ## Documentation For Models
@@ -79,6 +81,7 @@ Class | Method | HTTP request | Description
  - [OutputCreateUserResponse](doc/OutputCreateUserResponse.md)
  - [OutputDeleteUserResponse](doc/OutputDeleteUserResponse.md)
  - [OutputListEncounterResponse](doc/OutputListEncounterResponse.md)
+ - [OutputReadUserResponse](doc/OutputReadUserResponse.md)
 
 
 ## Documentation For Authorization

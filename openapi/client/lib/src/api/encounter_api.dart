@@ -25,6 +25,7 @@ class EncounterApi {
   /// Get All Encounters
   ///
   /// Parameters:
+  /// * [authorization] - Authorization
   /// * [encounterId] - list encounter request
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -36,6 +37,7 @@ class EncounterApi {
   /// Returns a [Future] containing a [Response] with a [OutputListEncounterResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<OutputListEncounterResponse>> encountersEncounterIdGet({ 
+    required String authorization,
     required String encounterId,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -48,6 +50,7 @@ class EncounterApi {
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
+        r'Authorization': authorization,
         ...?headers,
       },
       extra: <String, dynamic>{
@@ -100,6 +103,7 @@ class EncounterApi {
   /// Get All Encounters
   ///
   /// Parameters:
+  /// * [authorization] - Authorization
   /// * [pageID] 
   /// * [pageSize] 
   /// * [userID] 
@@ -113,6 +117,7 @@ class EncounterApi {
   /// Returns a [Future] containing a [Response] with a [BuiltList<OutputListEncounterResponse>] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<BuiltList<OutputListEncounterResponse>>> encountersGet({ 
+    required String authorization,
     int? pageID,
     int? pageSize,
     String? userID,
@@ -127,6 +132,7 @@ class EncounterApi {
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
+        r'Authorization': authorization,
         ...?headers,
       },
       extra: <String, dynamic>{
@@ -186,6 +192,7 @@ class EncounterApi {
   /// Create Encount entory
   ///
   /// Parameters:
+  /// * [authorization] - Authorization
   /// * [createEncounterRequest] - create encounter request
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
@@ -197,6 +204,7 @@ class EncounterApi {
   /// Returns a [Future] containing a [Response] with a [OutputCreateEncounterResponse] as data
   /// Throws [DioException] if API call or serialization fails
   Future<Response<OutputCreateEncounterResponse>> encountersPost({ 
+    required String authorization,
     required InputCreateEncounterRequest createEncounterRequest,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -209,6 +217,7 @@ class EncounterApi {
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
+        r'Authorization': authorization,
         ...?headers,
       },
       extra: <String, dynamic>{

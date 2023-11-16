@@ -20,6 +20,7 @@ import 'package:openapi/src/model/output_create_encounter_response.dart';
 import 'package:openapi/src/model/output_create_user_response.dart';
 import 'package:openapi/src/model/output_delete_user_response.dart';
 import 'package:openapi/src/model/output_list_encounter_response.dart';
+import 'package:openapi/src/model/output_read_user_response.dart';
 
 part 'serializers.g.dart';
 
@@ -30,6 +31,7 @@ part 'serializers.g.dart';
   OutputCreateUserResponse,
   OutputDeleteUserResponse,
   OutputListEncounterResponse,
+  OutputReadUserResponse,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

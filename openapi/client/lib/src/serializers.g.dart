@@ -12,7 +12,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(OutputCreateEncounterResponse.serializer)
       ..add(OutputCreateUserResponse.serializer)
       ..add(OutputDeleteUserResponse.serializer)
-      ..add(OutputListEncounterResponse.serializer))
+      ..add(OutputListEncounterResponse.serializer)
+      ..add(OutputReadUserResponse.serializer))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -8,6 +8,7 @@ doc/OutputCreateEncounterResponse.md
 doc/OutputCreateUserResponse.md
 doc/OutputDeleteUserResponse.md
 doc/OutputListEncounterResponse.md
+doc/OutputReadUserResponse.md
 doc/UserApi.md
 lib/openapi.dart
 lib/src/api.dart
@@ -27,5 +28,7 @@ lib/src/model/output_create_encounter_response.dart
 lib/src/model/output_create_user_response.dart
 lib/src/model/output_delete_user_response.dart
 lib/src/model/output_list_encounter_response.dart
+lib/src/model/output_read_user_response.dart
 lib/src/serializers.dart
 pubspec.yaml
+test/output_read_user_response_test.dart
