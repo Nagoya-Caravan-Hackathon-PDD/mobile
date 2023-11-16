@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "681949753425",
+    "project_id": "nagoya-caravan",
+    "storage_bucket": "nagoya-caravan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681949753425:android:1467097c573975d5150870",
+        "android_client_info": {
+          "package_name": "com.example.github_go_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGZz-gTkBHZsBSolJzZG7-ep1OzKmsqIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681949753425:android:b99f5640e3a41269150870",
+        "android_client_info": {
+          "package_name": "jp.susatthi.flutterfire_sample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGZz-gTkBHZsBSolJzZG7-ep1OzKmsqIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681949753425:android:94c163358b4db743150870",
+        "android_client_info": {
+          "package_name": "jp.susatthi.flutterfire_sample.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGZz-gTkBHZsBSolJzZG7-ep1OzKmsqIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
