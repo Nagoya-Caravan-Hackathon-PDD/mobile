@@ -14,7 +14,6 @@ import 'package:openapi/src/model/output_create_encounter_response.dart';
 import 'package:openapi/src/model/output_list_encounter_response.dart';
 
 class EncounterApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -36,7 +35,7 @@ class EncounterApi {
   ///
   /// Returns a [Future] containing a [Response] with a [OutputListEncounterResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<OutputListEncounterResponse>> encountersEncounterIdGet({ 
+  Future<Response<OutputListEncounterResponse>> encountersEncounterIdGet({
     required String authorization,
     required String encounterId,
     CancelToken? cancelToken,
@@ -46,7 +45,10 @@ class EncounterApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/encounters/{encounter_id}'.replaceAll('{' r'encounter_id' '}', encodeQueryParameter(_serializers, encounterId, const FullType(String)).toString());
+    final _path = r'/encounters/{encounter_id}'.replaceAll(
+        '{' r'encounter_id' '}',
+        encodeQueryParameter(_serializers, encounterId, const FullType(String))
+            .toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -72,11 +74,12 @@ class EncounterApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(OutputListEncounterResponse),
-      ) as OutputListEncounterResponse;
-
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(OutputListEncounterResponse),
+            ) as OutputListEncounterResponse;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -104,9 +107,9 @@ class EncounterApi {
   ///
   /// Parameters:
   /// * [authorization] - Authorization
-  /// * [pageID] 
-  /// * [pageSize] 
-  /// * [userID] 
+  /// * [pageID]
+  /// * [pageSize]
+  /// * [userID]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -116,7 +119,7 @@ class EncounterApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<OutputListEncounterResponse>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<OutputListEncounterResponse>>> encountersGet({ 
+  Future<Response<BuiltList<OutputListEncounterResponse>>> encountersGet({
     required String authorization,
     int? pageID,
     int? pageSize,
@@ -143,9 +146,15 @@ class EncounterApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (pageID != null) r'pageID': encodeQueryParameter(_serializers, pageID, const FullType(int)),
-      if (pageSize != null) r'pageSize': encodeQueryParameter(_serializers, pageSize, const FullType(int)),
-      if (userID != null) r'userID': encodeQueryParameter(_serializers, userID, const FullType(String)),
+      if (pageID != null)
+        r'pageID':
+            encodeQueryParameter(_serializers, pageID, const FullType(int)),
+      if (pageSize != null)
+        r'pageSize':
+            encodeQueryParameter(_serializers, pageSize, const FullType(int)),
+      if (userID != null)
+        r'userID':
+            encodeQueryParameter(_serializers, userID, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -161,11 +170,13 @@ class EncounterApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(OutputListEncounterResponse)]),
-      ) as BuiltList<OutputListEncounterResponse>;
-
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(
+                  BuiltList, [FullType(OutputListEncounterResponse)]),
+            ) as BuiltList<OutputListEncounterResponse>;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -203,7 +214,7 @@ class EncounterApi {
   ///
   /// Returns a [Future] containing a [Response] with a [OutputCreateEncounterResponse] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<OutputCreateEncounterResponse>> encountersPost({ 
+  Future<Response<OutputCreateEncounterResponse>> encountersPost({
     required String authorization,
     required InputCreateEncounterRequest createEncounterRequest,
     CancelToken? cancelToken,
@@ -231,11 +242,11 @@ class EncounterApi {
 
     try {
       const _type = FullType(InputCreateEncounterRequest);
-      _bodyData = _serializers.serialize(createEncounterRequest, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData =
+          _serializers.serialize(createEncounterRequest, specifiedType: _type);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -258,11 +269,12 @@ class EncounterApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(OutputCreateEncounterResponse),
-      ) as OutputCreateEncounterResponse;
-
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(OutputCreateEncounterResponse),
+            ) as OutputCreateEncounterResponse;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -284,5 +296,4 @@ class EncounterApi {
       extra: _response.extra,
     );
   }
-
 }
