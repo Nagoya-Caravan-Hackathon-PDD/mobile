@@ -20,7 +20,8 @@ UseMutationResult<OutputCreateEncounterResponse?, String>
         ..userId = user.uid);
 
       final res = await encounterRepo.encountersPost(
-          authorization: user.token, createEncounterRequest: request);
+          authorization: "Bearer ${user.token}",
+          createEncounterRequest: request);
       return res.data;
     },
   );
